@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js原型和原型链</title>
+</head>
+<body>
+	<script type="text/javascript"  contenteditable="true" style="display:block;white-space:pre;">
+       var person = function(name){
+       	  this.name = name;
+       }
+       person.prototype.userAge = 18;
+       person.prototype.sayHi = function(){
+
+       }
+       
+       console.log(typeof person);
+
+       Object.defineProperty(person,"sex",{
+              value:"man",
+              enumerable:false
+       });
+
+       var per = new person("smile");
+       
+       console.log(Object.keys(per));
+       console.log(Object.keys(per.__proto__));
+       console.log(Object.keys(person.prototype));
+       console.log(per.__proto__ === person.prototype);
+       console.log(Object.getOwnPropertyNames(person));
+
+       
+	</script>
+	
+</body>
+</html>

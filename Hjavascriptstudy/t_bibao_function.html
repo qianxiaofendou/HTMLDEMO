@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的一些知识点</title>
+</head>
+<body>
+	<p>产品 0</p>
+	<p>产品 1</p>
+	<p>产品 2</p>
+	<p>产品 3</p>
+	<p>产品 4</p>	
+	<script type="text/javascript">
+
+// 运行之后发现，每次点击的时候出来的都是5，原因是
+// 通过element.onclick=function(){alert(i);}方式给元 素添加点击事件。响应函数function(){alert(i);}中的 i 并非每次循环时对应的 i(如0，1，2，3，4)而是循环后最后 i 的值5。 或者说循环时响应函数内并未能保存对应的值 i，而是最后一次i++的值5。   
+// for( var i=0; i<pAry.length; i++ ) {
+//      pAry[i].onclick = function() {        		
+// 	         alert(i);
+//      }
+// } 	
+    window.onload=function(){
+			 function init() {
+			    var pAry = document.getElementsByTagName("p");
+			    for( var i=0; i<pAry.length; i++ ) {
+			         pAry[i].onclick = (function(i) {
+			          	//加一层闭包，返回一个函数作为响应事件  仉佼-网达 使用的方式
+			          	return function(){			         		
+					          alert(i);
+			            }
+			        })(i);
+			    }
+		 	}  
+			
+			init();     	
+   }
+//第二种方法 将变量 i 保存给在每个段落对象(p)上  大志-网达 使用的方式     
+// for( var i=0; i<pAry.length; i++ ) {
+//      pAry[i].onclick = function() {
+//      	pAry[i].i=i;
+//      	pAry[i].onclick = function(){			         		
+// 	         alert(this.i);
+//      	}
+//      ｝
+// }       
+// 
+// 获取函数内部的变量
+// 	function f1(){ 
+// 　　　　n=999; 
+// 　　　　function f2(){
+// 　　　　　　return n;
+// 　　　　} 
+// 　　　　return f2; 
+// 　　}
+ 
+// 　　var r=f1();
+ 
+// 　　alert(r()); // 999
+// 
+// 
+     function fn9(m,n){
+       console.log(n);
+       return{       	
+	       fn9:function(k){
+	       	  return fn9(k,m);
+	       }
+       }
+     }
+     var m1 = fn9(0);m1.fn9(1);m1.fn9(2);m1.fn9(3);
+     var m2 = fn9(0).fn9(1).fn9(2).fn9(3);
+     var m3 = fn9(0).fn9(1);m3.fn9(2);m3.fn9(3);
+
+
+     // 1、第一行a
+     // var a = fun(0);  a.fun(1);  a.fun(2);  a.fun(3);
+     // 可以得知，第一个fun(0)是在调用第一层fun函数。第二个fun(1)是在调用前一个fun的返回值的fun函数，所以：
+     // 第后面几个fun(1),fun(2),fun(3),函数都是在调用第二层fun函数。
+     // 遂：
+     // 在第一次调用fun(0)时，o为undefined；
+     // 第二次调用fun(1)时m为1，此时fun闭包了外层函数的n，也就是第一次调用的n=0，即m=1，n=0，并在内部调用第一层fun函数fun(1,0);所以o为0；
+     // 第三次调用fun(2)时m为2，但依然是调用a.fun，所以还是闭包了第一次调用时的n，所以内部调用第一层的fun(2,0);所以o为0
+     // 第四次同理；
+     // 即：最终答案为undefined,0,0,0
+     // 2、第二行b
+     // var b = fun(0).fun(1).fun(2).fun(3);//undefined,?,?,?
+     // 先从fun(0)开始看，肯定是调用的第一层fun函数；而他的返回值是一个对象，所以第二个fun(1)调用的是第二层fun函数，后面几个也是调用的第二层fun函数。
+     // 遂：
+     // 在第一次调用第一层fun(0)时，o为undefined；
+     // 第二次调用 .fun(1)时m为1，此时fun闭包了外层函数的n，也就是第一次调用的n=0，即m=1，n=0，并在内部调用第一层fun函数fun(1,0);所以o为0；
+     // 第三次调用 .fun(2)时m为2，此时当前的fun函数不是第一次执行的返回对象，而是第二次执行的返回对象。而在第二次执行第一层fun函数时时(1,0)所以n=1,o=0,返回时闭包了第二次的n，遂在第三次调用第三层fun函数时m=2,n=1，即调用第一层fun函数fun(2,1)，所以o为1；
+     // 第四次调用 .fun(3)时m为3，闭包了第三次调用的n，同理，最终调用第一层fun函数为fun(3,2)；所以o为2；
+     // 即最终答案：undefined,0,1,2
+     //  3、第三行c
+     // var c = fun(0).fun(1);  c.fun(2);  c.fun(3);//undefined,?,?,?
+     // 根据前面两个例子，可以得知：
+     // fun(0)为执行第一层fun函数，.fun(1)执行的是fun(0)返回的第二层fun函数，这里语句结束，遂c存放的是fun(1)的返回值，而不是fun(0)的返回值，所以c中闭包的也是fun(1)第二次执行的n的值。c.fun(2)执行的是fun(1)返回的第二层fun函数，c.fun(3)执行的也是fun(1)返回的第二层fun函数。
+     // 遂：
+     // 在第一次调用第一层fun(0)时，o为undefined；
+     // 第二次调用 .fun(1)时m为1，此时fun闭包了外层函数的n，也就是第一次调用的n=0，即m=1，n=0，并在内部调用第一层fun函数fun(1,0);所以o为0；
+     // 第三次调用 .fun(2)时m为2，此时fun闭包的是第二次调用的n=1，即m=2，n=1，并在内部调用第一层fun函数fun(2,1);所以o为1；
+     // 第四次.fun(3)时同理，但依然是调用的第二次的返回值，遂最终调用第一层fun函数fun(3,1)，所以o还为1
+     // 即最终答案：undefined,0,1,1
+     // 
+     // 
+     // 
+      function sum() {
+       var fir = arguments[0];
+       if(arguments.length === 2) {
+	       return arguments[0] + arguments[1]
+       } else {
+	       return function(sec) {
+		       return fir + sec;
+	       }
+       }
+        
+      }
+      console.log(sum(2,3)); // Outputs 5
+      console.log(sum(2)(3)); // Outputs 5
+	</script>
+</body>
+</html>

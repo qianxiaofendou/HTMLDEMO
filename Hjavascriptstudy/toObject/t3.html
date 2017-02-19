@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>直接继承成员</title>
+    <script type="text/javascript">
+    function worker(name) {
+        this.name = name;
+    };
+    worker.prototype.sayHello = function() {
+        document.write("hello ! <br/>" + this.name);
+    };
+
+    function leader(name) {
+    	//apply这是JavaScript内置的一个方法，只要是声明成为function的对象，都会拥有该成员。
+        worker.apply(this, arguments);
+        //worker.call(this, name);
+    };
+    /**
+     * 光调用了父类型的构造函数，但是其原型中的成员依然没有建立在当前类型中。
+
+	 *我们可以通过直接引用的方法得到父类型中的所有成员：
+	 *ps:直接继承并不是继承，而是直接引用
+     * @type {[type]}
+     */
+    leader.prototype = worker.prototype;
+
+    var l = new leader("jim");
+    l.sayHello();
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

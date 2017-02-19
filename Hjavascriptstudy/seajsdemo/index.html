@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>seajs study</title>
+	<script type="text/javascript" src="js/lib/sea.js"></script>
+	<script type="text/javascript" src="js/sea_conf.js"></script>
+	<script>
+	     
+	     /**
+	      * 如果把配置中的配置方式为  $:'jquery-1.11.1.min.js'
+	      * 下面在use的时候传进去即可使用$符号（实际上等同于jQuery("");）
+	      * 否则在模块文件里面，如ui.js里面
+	      * 使用var $ = require('jquery'); 也可以加载jquery，但是$符号是无法使用的
+	      */
+	      //seajs.use(['zepto']);
+	     seajs.use(["main/ui.js","main/c_1.js"],function(ui,c1){
+	     	
+	     	ui.hello();
+	     	c1.hello();
+	     });
+
+		</script>
+</head>
+	<body>
+		<div id="tt" class="tt">click me<span>kkk</span></div>
+		<div id="">
+			shiwola
+		</div>
+		<div id="ad">
+			
+		</div>
+	
+</body>
+</html>

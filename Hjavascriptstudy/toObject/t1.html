@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>通过functions来构建对象1</title>
+</head>
+
+<body>
+    <script type="text/javascript" contenteditable="true" style="display:block;white-space:pre;">
+    function worker(name, age) {
+        this.name = name;
+        this.age = age;
+        this.isWorking = false;
+        this.startWork = function() {
+            if (this.isWorking) return;
+            this.isWorking = true;
+        };
+    }
+
+    var tom = new worker("tom", 40);
+    var jim = new worker("jim", 20);
+
+    document.write(tom.startWork == jim.startWork);
+    /*
+    通过上边的例子，我们还可以发现jim和tom的startWork并不指向不一个内存，也就意味着，当我们有很多实例的时候，内存开销会非常大。
+     */
+    </script>
+</body>
+
+</html>

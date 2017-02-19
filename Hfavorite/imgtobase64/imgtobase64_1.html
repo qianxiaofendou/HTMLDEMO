@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+    /**
+     * [_isStorageSupported description]
+     * @return {Boolean} [description]
+     * 判断浏览器是否支持本地存储
+     */
+    function _isStorageSupported () {
+    	var storage = localStorage || window.localStorage;
+        var supported = false;
+        if (storage && storage.setItem ) {
+            supported = true;
+            var key = '__' + Math.round(Math.random() * 1e7);
+            try {
+                storage.setItem(key, key);
+                storage.removeItem(key);
+            } catch (err) {
+                supported = false;
+            }
+        }
+        return supported;
+    }
+
+     /**
+      * [getLocalstore description]
+      * @return {[type]} [description]
+      * 获取localstorage，简单封装了一下
+      */
+     function getLocalstore(){
+         if(_isStorageSupported){
+         	return window.localStorage;
+         }
+     }
+
+    // var img = "jqgc.jpg"; 
+     var img = "http://localhost:8078/favorite/imgtobase64/jqgc.jpg";
+		//var img = "http://127.0.0.1/base64/1.jpg";
+		function getBase64Image(img) {
+		    var canvas = document.createElement("canvas");
+		    canvas.width = img.width;
+		    canvas.height = img.height;
+		 
+		    var ctx = canvas.getContext("2d");
+		    ctx.drawImage(img, 0, 0, img.width, img.height);
+		    var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+		    var dataURL = canvas.toDataURL("image/"+ext);
+		    return dataURL;
+		}
+
+        /**
+         * [imgcoverbase64 description]
+         * @return {[type]} [description]
+         * 测试的时候发现，image.onload不能封装置函数里面，猜测应该是个回调
+         */
+        function imgcoverbase64(callback){
+			var image = new Image();
+			image.crossOrigin = '';
+			image.src = img;
+			image.onload = function(){
+			    var base64 = getBase64Image(image);
+			    callback.call(this,base64);			    			    
+			}	
+	    }
+
+	   
+
+       if(_isStorageSupported()){
+       	   var store = getLocalstore();
+       	   //store.clear();
+       	   if(store.getItem("img1")){
+                console.log("store:"+store.getItem("img1"));
+                document.write("<img src='"+store.getItem("img1")+"'></img>");
+       	   }else{
+       	   	    imgcoverbase64(function(base64img){
+       	   	    	store.setItem("img1",base64img);
+       	   	    	console.log("浏览器本地存储无缓存，用服务器获取方式，同时存入本地缓存："+base64img);
+       	   	    	document.write("<img src='"+base64img+"'></img>");
+       	   	    });
+       	   }
+        }else{
+            imgcoverbase64(function(base64img){
+          	    console.log("浏览器不支持本地存储，用服务器获取方式："+base64img);
+          	   imgcoverbase64(function(base64img){
+       	   	    	store.setItem("img1",base64img);
+       	   	    	console.log("server:"+base64img);
+       	   	    	document.write("<img src='"+base64img+"'></img>");
+       	   	    });
+	   	     
+	        });
+
+        }
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

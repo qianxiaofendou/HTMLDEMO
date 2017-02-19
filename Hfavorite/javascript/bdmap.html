@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取地理位置</title>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=60miEPOQGqgG7D3ecgLhEcI4Tr32KHn1"></script>
+	<script type="text/javascript">
+//根据经纬度获取当前位置
+function showPosition(position) {
+    console.log("纬度: " + position.coords.latitude +
+        "|经度: " + position.coords.longitude);
+    lg = position.coords.longitude;
+    lt = position.coords.latitude;
+    var new_point = new BMap.Point(position.coords.longitude, position.coords.latitude);
+    var myCity = new BMap.Geocoder();
+    myCity.getLocation(new_point, myLocation);
+    console.log(myCity);
+}
+//GPS定位失败事件
+function showError(error) {
+    console.log(error.message + error.code);
+    var myCity = new BMap.LocalCity();
+    //myCity.get(myIp);
+
+}
+//showPosition()
+  var position_option = {
+        enableHighAccuracy: true,
+        maximumAge: 30000,
+        timeout: 5000
+    };
+    navigator.geolocation.getCurrentPosition(showPosition, showError, position_option);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

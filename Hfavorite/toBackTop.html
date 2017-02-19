@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>返回到顶部</title>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<style>
+      #goTopBtn {
+		    position: fixed;
+		    bottom: 48px;
+		    height: 41px;
+		    cursor: pointer;
+		    right: 6px;
+		    z-index: 10000;
+		    display:none;
+	   }
+	   .dd li{
+	   	width:300px;
+	   	height:50px;
+	   	line-height:50px;
+	   	border:1px solid #ccc;
+	   	background: #eee;
+	   	margin:10px auto;
+	   	list-style: none;
+	   }
+	</style>
+</head>
+<body>
+	
+	<ul class="dd">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+
+	<div id="goTopBtn">
+         <a href="#"><img src="../img/top_o.png"> </a>
+     </div>
+
+
+	<script type="text/javascript">
+	 //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+	    $(function () {
+	        $(window).scroll(function(){
+	            if ($(window).scrollTop()>100){
+	                $("#goTopBtn").fadeIn(1500);
+	            }
+	            else
+	            {
+	                $("#goTopBtn").fadeOut(1500);
+	            }
+	        });
+
+	        //当点击跳转链接后，回到页面顶部位置
+
+	        $("#goTopBtn").click(function(){
+	            $('body,html').animate({scrollTop:0},1000);
+	            return false;
+	        });
+	    });
+
+
+	// window.onload = function(){
+	// 	var obj=document.getElementById("goTopBtn");
+	//     function getScrollTop(){
+	// 		return document.documentElement.scrollTop || document.body.scrollTop; 
+	// 	}
+	// 	window.onscroll=function(){
+	// 		getScrollTop()>0?obj.style.display="":obj.style.display="none";	
+	//     }
+	// 	obj.onclick=function(){
+	// 		    window.scrollTo(0,0);
+	// 	 }
+	// }    
+  </script>      
+</body>
+</html>

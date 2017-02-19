@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>移动web点5像素的秘密</title>
+    <style type="text/css">
+    .line {
+        height: 50px;
+        line-height: 50px;
+        background-color: #CCC;
+        border-bottom: 1px solid red;
+    }
+    
+    .scale {
+        position: relative;
+        height: 50px;
+        line-height: 50px;
+        background-color: #CCC;
+    }
+    
+    .scale:after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        height: 1px;
+        background-color: red;
+        -webkit-transform: scale(1, .5);
+        transform: scale(1, .5);
+        -webkit-transform-origin: center bottom;
+        transform-origin: center bottom;
+    }
+    .item4, .item5 {
+        width: 200px;
+        height: 100px;
+        position: relative;
+    }
+     
+
+    .item4 {
+        border: 1px solid #000;
+    }
+     
+    .item5::before {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        border: 1px solid #000;
+        transform-origin: 0 0;
+        transform: scale(0.5, 0.5);
+        box-sizing: border-box;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="line">1px</div>
+    <br/>
+    <br/>
+    <div class="scale">0.5px</div>
+
+    <br/><br/>
+    <!-- 
+      基本步骤就是：
+
+      设置目标元素定位参照
+      给目标元素添加一个伪元素before或者after，并设置绝对定位
+      给伪元素添上1px的边框
+      设置伪元素的宽高为目标元素的2倍
+      缩小0.5倍（变回目标元素的大小）
+      使用border-box把border包进来
+    -->
+    <div class="item4">测试用的边框1</div>
+    <br/>
+    <div class="item5">测试用的边框2</div>
+</body>
+
+</html>

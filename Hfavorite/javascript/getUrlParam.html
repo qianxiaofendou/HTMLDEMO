@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取url参数</title>
+	
+	
+	<style type="text/css">
+       body{font-size: 16px;}
+       p{font-size: 15px;}
+	</style>
+	<script type="text/javascript">
+	    //videojs.options.flash.swf = "video-js.swf";
+	     var uurl = "?sourceid=203005&apptype=2&forceAuthn=truegtisPassive=false&authType=&display=&relayState=login&callbackURL=2016.miguvideo.com/wap/resource/olympic/play/play_onDemand2.jsp?cid=608610233#5=3";
+		function $getQuery(name, url) {
+			var u = arguments[1] || window.location.search,u = url,
+			reg = new RegExp("(|&)" + name + "=([&]*)(&|$)"),
+			r = u.substr(u.indexOf("\?") + 1).match(reg);
+			return r != null ? r[2] : "";
+		};
+		var c = $getQuery("sourceid",uurl);
+		if(c)alert(c);
+
+		function getUrlParam(name) {
+		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		    //var r = uurl.substr(1).match(reg);  //匹配目标参数
+		    //console.log(r);
+		    if (r != null) return decodeURI(r[2]);
+		    return null; //返回参数值
+		}
+        var cc = getUrlParam("callbackURL");
+       // console.log(cc);
+
+		function GetRequest(url) {
+		        //var url = location.search; //获取url中"?"符后的字串
+		        var theRequest = new Object();
+		        if (url.indexOf("?") != -1) {
+		        	var index = url.indexOf("?");
+		            var str = url.substr(index+1);
+		            //alert(str);
+		            strs = str.split("&");
+		            for (var i = 0; i < strs.length; i++) {
+		                //theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+		                theRequest[strs[i].substr(0,strs[i].indexOf("="))] = strs[i].substr(strs[i].indexOf("=")+1);
+		            }
+		        }
+		        return theRequest;
+		}
+
+	</script>
+</head>
+<body>
+	<input  name="cpid" type="text" id="url" placeholder="请输入地址……" style="color:#ccc" ></input><a id="c">点我查询</a><br/>
+    <p>
+    在上面的输入框中输入需要解析的url地址，如：<br/>
+    https://passport.migu.cn/login?sourceid=203005&apptype=2&forceAuthn=true&isPassive=false&authType=&display=&relayState=login&callbackURL=2016.miguvideo.com/wap/resource/olympic/play/play_onDemand2.jsp?cid=608610233
+    </p>
+    <div id="urldata1" style="display:none;border:1px solid #ccc;padding: 10px;color:#969696"></div>
+
+
+
+    
+
+
+	<script type="text/javascript">
+         var c = document.getElementById("c");             
+         c.onclick = function(){
+            var t = document.getElementById("url");
+            var r = GetRequest(t.value);
+            var dt = "";
+            for(var key in r){
+            	dt += key + ":" + r[key] +"<br/>";
+            	console.log(key+":"+r[key]);
+            }
+            if(dt.length>5){
+            	document.getElementById("urldata1").innerHTML = dt;
+            	document.getElementById("urldata1").style.display="block";
+            }
+            console.log(dt);  
+         }
+	</script>
+	
+	
+</body>
+</html>

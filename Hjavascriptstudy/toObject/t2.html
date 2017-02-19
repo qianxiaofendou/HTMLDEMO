@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>通过functions来构建对象2</title>
+</head>
+
+<body>
+    <script type="text/javascript" contenteditable="true" style="display:block;white-space:pre;">
+    function worker(name, age) {
+        this.name = name;
+        this.age = age;
+        this.isWorking = false;
+    }
+    worker.prototype.startWork = function() {
+        if (this.isWorking) return;
+        this.isWorking = true;
+    };
+
+    //在此处尝试定义一个endWork方法
+
+
+    var tom = new worker("tom", 40);
+    var jim = new worker("jim", 20);
+
+    var html = "tom和jim两个实例的startWork方法是否共用内存 : " + (tom.startWork == jim.startWork).toString();
+    document.write(html);
+    /**
+     * prototype这个概念，它便是原型。任何类型都会有属于自己的原型，并且原型上定义的成员，可以在每个实例中引用，并且是共	用的。我们可以先看看上边示例的运行结果。
+
+		结果很明显，这次两个不同实例的startWork是相同的了，这意味着不同实例间共用了该方法。
+
+		那么在设计JavaScript面向对象类型的时候，我们一般遵循以下规则：
+
+		1、因为实例不同而不同的内容，用this关键字声明
+		2、无论实例怎样内容完全相同的成员，定义在prototype上
+     */
+    </script>
+</body>
+
+</html>

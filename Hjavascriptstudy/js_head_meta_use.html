@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Html页面head标签元素的意义和应用场景</title>
+</head>
+<body>
+	<pre>
+&lt;meta charset="UTF-8">：设定网页字符编码，常用的有utf-8和gb2312；
+
+　　&lt;title>Title</title>：页面title，不解释；
+
+　　&lt;meta content="keyword" name="keywords">：keyword关键词，以逗号区分开，不解释；
+
+　　&lt;meta content="description" name="description">：description描述不解释；
+
+　　&lt;meta name="renderer" content="webkit">：优先使用chrome内核渲染页面；
+
+　　&lt;meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">：优先使用最新版ie和chrome浏览器；
+
+　　&lt;meta http-equiv="Cache-Control" content="no-siteapp" />：通过手机百毒打开网页时，百毒可能会对你的网页进行转码，只展现页面内容，头底部会被替换并且一般会加点广告==尿性不改；
+
+　　&lt;meta name="author" content="author,email address">：定义页面作者，这个很少见人用貌似，当然也有很多人不认识，之前一个项目交付给老板后他看到这段不认识说我们在他们网站放木马==论多读书多识字的重要性；
+
+　　&lt;meta name="robots" content="index,follow">：定义网页搜索引擎索引方式，robotterms 是一组使用英文逗号「,」分割的值，通常有如下几种取值：none，noindex，nofollow，all，index和follow；
+
+　　&lt;meta name="viewport" content="width=device-width, initial-scale=1.0">：这个应用的就比较多了，为移动设备设定，viewport也可作为宽度单位，一些参数设定，width viewport 宽度(数值/device-width)，height viewport 高度(数值/device-height)，initial-scale 初始缩放比例，user-scalable 是否允许用户缩放(yes/no)，一般移动网页上都是设定设备宽度，默认不可缩放的；
+
+　　&lt;meta name="apple-mobile-web-app-capable" content="yes" />：有个apple，没错，这是苹果设备转用的，这个是是否启用 WebApp 全屏模式；苹果的设备可以说单成一家，有很多特定的设置
+
+　　&lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />：设置状态栏的背景颜色，只有在 "apple-mobile-web-app-capable" content="yes" 时生效；
+
+　　&lt;meta name="format-detection" content="telephone=no,email=no" />：不自动识别页面中的 电话和邮箱，就是点击数字或邮箱样的字符不会做其他操作；
+
+　　&lt;link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png" />：又是大苹果，没错这个是设置ios图标的，并且可以设置多个尺寸的，苹果可以设定启动页面，有兴趣继续戳官网文档；
+
+　　&lt;meta name="HandheldFriendly" content="true">：恩，如果你单词量多一些，可以看出来这个是什么意思，友好优化手持设备，貌似是针对不认识viewport的设备(苹果都成街机了，谁闲的没事用塞班看网页？)，反正我没用过，所以可以认为没什么卵用；
+
+　　&lt;meta name="screen-orientation" content="portrait">：uc强制竖屏；
+
+　　&lt;meta name="x5-orientation" content="portrait">：QQ强制竖屏；
+
+　　&lt;meta name="full-screen" content="yes">：UC强制全屏；
+
+ 　  &lt;meta name="x5-fullscreen" content="true">:QQ强制全屏
+　　&lt;meta name="browsermode" content="application">:UC应用模式
+　　&lt;meta name="x5-page-mode" content="app">:QQ应用模式;
+
+　　&lt;link rel="icon" type="image/ico" href="/favicon.ico" />：网页ico图标设置；
+
+　　&lt;link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />:rss订阅；		
+	</pre>
+</body>
+</html>

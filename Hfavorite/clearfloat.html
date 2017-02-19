@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>清除浮动元素方法</title>
+	<style>
+       .div1{border:1px solid #ccc;}
+       .div1:after{display:block;visibility: hidden;height:0;clear:both;content:".";}
+       .div2{height:100px;width:100px;margin:5px;background:orange;float:left;}
+       .code2{display: block;}
+
+       .marquee{
+	       white-space: nowrap;overflow:-webkit-marquee; width: 70px;-webkit-marquee-direction: forwards;-webkit-marquee-speed: slow;-webkit-marquee-style: alternate;
+       }
+       * {
+           -webkit-tap-highlight-color: transparent;
+           -webkit-appearance: none;  
+           outline: none;
+       }
+	</style>
+	<!--
+	   -webkit-tap-highlight-color
+           这个属性只用于iOS (iPhone和iPad)。当你点击一个链接或者通过Javascript定义的可点击元素的时候，它就会出现一个半透明的灰色背景。要重设这个表现，你可以设置-webkit-tap-highlight-color为任何颜色。
+	       想要禁用这个高亮，设置颜色的alpha值为0即可。
+       -webkit-appearance: none;   //消除输入框和按钮的原生外观，在iOS上加上这个属性才能给按钮和输入框自定义样式 。   注意：不同type的input使用这个属性之后表现不一。text、button无样式，radio、checkbox直接消失
+       .-webkit-user-select   -webkit-user-select: none; // 禁止页面文字选择 ，此属性不继承，一般加在body上规定整个body的文字都不会自动调整
+       -webkit-touch-callout   -webkit-touch-callout:none;  // 禁用长按页面时的弹出菜单(iOS下有效) ,img和a标签都要加
+    -->
+</head>
+<body>
+	<div class="div1"><div class="div2"></div></div>
+	<style contenteditable="true" class="code2">
+       .demo{font-size: 12px;}
+	</style>
+	<br/>
+	<div id="aa" class="marquee">那个遍地marquee(跑马灯)的年代。有趣的是这个已经被遗弃的标签反而在现在变的很有用，比如我们在比较小的手机屏幕上切换内容，如果不断行的话文字将不能完全显示。</div>
+
+	<script type="text/javascript" contenteditable="true" class="code2">
+        var c =document.getElementById("aa");
+	</script>
+</body>
+</html>	

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>日期计算器</title>
+    <style type="text/css">
+    body {
+        background: #71C4E9;
+        margin-left: 15px;
+    }
+    
+    input[type="text"] {
+        background: transparent;
+        border: 2px solid chocolate;
+        width: 40px;
+        text-align: center;
+    }
+    
+    input[type="button"] {
+        border: none;
+        background: #4a8cf7;
+        color: #fff;
+        width: 50px;
+        height: 22px;
+    }
+    
+    span {
+        display: inline-block;
+        width: 180px;
+        border-bottom: 1px solid #e22092;
+    }
+    
+    div {
+        line-height: 30px;
+    }
+    h2{margin: 0 auto;}
+    .author{font-size: 15px;margin-left:75px;}
+    </style>
+</head>
+
+<body>
+    <br>
+    <h2>日期计算器</h2>
+    <p class="author">——by 孙子涵</p>
+    <br>
+    <b>推算几天后的日期：</b>
+    <br>
+    <div>
+        和
+        <input type="text" size='8' id='SY' value='2016' />年
+        <input type="text" size='4' id='SM' value='3' />月
+        <input type="text" size='4' id='SD' value='9' />日 （缺省为今天）
+    </div>
+    <div>
+        相差
+        <input type="text" size='8' id='decday' value='100' />天 （输入负数则往前计算）是：
+        <span id='result1'></span>
+        <input type='button' value="计算" onclick="cala()" />
+    </div>
+    <br>
+    <br>
+    <b>计算日期差：</b>
+    <br>
+    <div>    
+        <input type="text" size='8' id='SY2' value='2013' />年
+        <input type="text" size='4' id='SM2' value='11' />月
+        <input type="text" size='4' id='SD2' value='1' />日
+    </div>
+    <div>
+        和
+        <input type="text" size='8' id='SY3' value='2017' />年
+        <input type="text" size='4' id='SM3' value='1' />月
+        <input type="text" size='4' id='SD3' value='1' />日
+    </div>
+    <div>
+        相差：
+        <span id='result2'></span>天
+        <input type='button' value="计算" onclick="calb()" />
+    </div>
+    <br>
+    <br>
+    <br>
+    <script type="text/javascript">
+    function init() {
+        var dt = new Date();
+        document.getElementById("SY").value = dt.getFullYear();
+        document.getElementById("SM").value = dt.getMonth() + 1;
+        document.getElementById("SD").value = dt.getDate();
+        document.getElementById("SY3").value = dt.getFullYear();
+        document.getElementById("SM3").value = dt.getMonth() + 1;
+        document.getElementById("SD3").value = dt.getDate();
+    }
+    init();
+    var hzWeek = new Array("日", "一", "二", "三", "四", "五", "六", "日");
+
+    function cweekday(wday) {
+        return hzWeek[wday];
+    }
+
+    function cala() {
+        y = document.getElementById("SY").value;
+        m = document.getElementById("SM").value;
+        d = document.getElementById("SD").value;
+        ddd = document.getElementById("decday").value;
+
+        ttt = new Date(y, m - 1, d).getTime() + ddd * 24000 * 3600;
+
+        theday = new Date();
+        theday.setTime(ttt);
+
+        document.getElementById("result1").innerHTML = theday.getFullYear() + "年" + (1 + theday.getMonth()) + "月" + theday.getDate() + "日" + "星期" + cweekday(theday.getDay());
+
+    }
+
+
+    function calb() {
+        y2 = document.getElementById("SY2").value;
+        m2 = document.getElementById("SM2").value;
+        d2 = document.getElementById("SD2").value;
+
+        y3 = document.getElementById("SY3").value;
+        m3 = document.getElementById("SM3").value;
+        d3 = document.getElementById("SD3").value;
+
+        day2 = new Date(y2, m2 - 1, d2);
+        day3 = new Date(y3, m3 - 1, d3);
+
+        document.getElementById("result2").innerHTML = (day3 - day2) / 86400000;
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数</title>
+	<script type="text/javascript">
+      //"use strict"
+      console.log("函数变量提升※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
+        /**
+         * 这里f1是函数声明，在读取f1之前会先读取函数声明，所以这里是可以正常输出的，这就是函数变量提升
+         */
+	    f1();
+	    /**
+	     * 这里会报错，因为函数表达式类型的函数浏览器在解析的时候会立即执行，这里是把一个匿名函数赋值给一个变量f2
+	     * 当执行f2()函数的时候，这时候f2是不存在的
+	     */
+	    //f2(); 
+       //函数声明
+       function f1(){console.log("函数表达式f1");}
+
+       //函数表达式
+       var f2 = function(){console.log("函数表达式f2");}
+
+       /**
+        * 不建议这么使用
+        * @param  {[type]} true [description]
+        * @return {[type]}      [description]
+        */
+       if(true){
+       	function sayH(){
+       		alert("say");
+       	}
+       }else{
+         function sayH(){
+         	alert("say2");
+         }
+
+       }
+       //sayH();  //如果写在if上面指向则报错，函数不存在
+       
+       //正确做法是：
+       var sayH2;
+       if(true){
+       	 sayH2 = function(){
+       		alert("say");
+       	}
+       }else{
+         sayH2 = function(){
+         	alert("say2");
+         }
+       }
+       
+       
+       
+       //这里f6会被忽略，执行f3()可以正常alert，执行f6在不存在；f6在这里是具名函数，可在函数内部使用
+       var f3 = (function f6(){
+       	  alert("f6");
+       });
+       //f3();
+       //
+       console.group("函数的声明比变量的声明具有高的优先级");
+       //函数的声明比变量的声明具有高的优先级
+       function fn1(a){
+         console.log(a);
+         var a = 2;
+         function a(){
+           console.log(a);
+         }
+           console.log(a);
+       }
+      fn1(1);
+      console.groupEnd();
+
+     //上面的这个函数等同于
+     // function fn1(a){
+     //   var a;
+     //   function a(){
+     //     console.log(a);
+     //   }
+     //   console.log(a);
+     //    a = 2;
+     // }
+
+     /**
+      * 作用域   
+      * 此时的this指向的是window，即window.length
+      * 若是采用new fn();这是this指向的是对象本身
+      * @type {Number}
+      */
+      var length = 5; 
+      function fn7(){
+        this.length = 6;
+        console.log("fn7 this.length:"+this.length+"  "+this);
+      }
+
+
+      function fnn1(){
+         fnn2 = "fnn2";
+      }
+      fnn1();  //当执行了函数之后，fnn2由于没有使用var声明，因此会变成全局变量
+      console.log(fnn2);
+
+      console.group("this 的作用域");
+      fn7();
+      var fn7demo = new fn7();
+      //fn7demo();
+      console.groupEnd();
+
+
+      function fn8(){
+        console.log("fn8");
+      }
+      var uname = "lidaren";
+      var obj8 = {
+        uname:"jack",
+        methods:function(fn){
+          (function(){            
+             console.log("uname:"+this.uname);   //此时由于是在单独块级作用域里面，this指向的是全局，即window  
+          })();
+             console.log("uname:"+this.uname);  //此时若是下面是采用new obj8.methods(fn8,1,2)方式创建，this指向当前对象内部，this.name为undifined
+          console.log(arguments[0]);
+        }
+      }
+      obj8.methods(fn8,1,2);
+      console.log("递归※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
+      /**
+       * 建议使用下面的第三种方法，严格模式下面和非严格模式下面都可以执行
+       * @param  {[type]} num [description]
+       * @return {[type]}     [description]
+       */
+       function f7(num){
+       	 if(num < 1){
+       	 	return 1;
+       	 }else{
+       	 	return num * f7(num-1);
+       	 }
+       }
+       console.log(f7(5));
+
+       //严格模式下将会出错
+       function f8(num){
+       	 if(num < 1){
+       	 	return 1;
+       	 }else{
+       	 	return num * arguments.callee(num-1);
+       	 }
+       }
+       console.log(f8(5));
+       //建议使用这种方式 
+       var f9 =(function f81(num){
+       	 if(num < 1){
+       	 	return 1;
+       	 }else{
+       	 	return num * f81(num-1);
+       	 }
+       });
+       console.log(f9(5));
+
+
+       function f10(){
+       	 for(var i =0;i<6;i++){
+       	 	console.log(i);     //输出1 2/3 4 5
+       	 }
+       	 console.log(i+" out");  //输出 6 out
+       }
+       f10();
+
+       function f11(){
+       	 var arr = new Array();
+       	 for(var i =0;i<6;i++){
+       	 	arr[i] = function(){
+       	 		//console.log(i);
+       	 		return i;
+       	 	}
+       	 }
+       	 return arr;
+       }
+       console.log(f11());  //i都是6 
+
+       function f12(){
+       	 var arr = new Array();
+       	 for(var i =0;i<6;i++){
+       	 	arr[i] = function(i){
+       	 		//console.log(i);
+       	 		return function(){
+       	 			return i;
+       	 		};
+       	 	}(i);
+       	 }
+       	 return arr;
+       }
+       console.log(f12());
+
+
+
+
+       // 1.  内联样式表的权值最高 1000；
+
+       // 2.  ID 选择器的权值为 100
+
+       // 3.  Class 类选择器的权值为 10
+
+       // 4.  HTML 标签选择器的权值为 1
+
+        
+
+       // 利用选择器的权值进行计算比较，示例如下
+       // <html>
+       //   <head>
+       //     <style type="text/css">
+       //         #redP p {
+       //              /* 权值 = 100+1=101 */
+       //              color:#F00;  /* 红色 */
+       //         }
+        
+       //         #redP .red em {
+       //              /* 权值 = 100+10+1=111 */
+       //              color:#00F; /* 蓝色 */
+        
+       //         }
+        
+       //         #redP p span em {
+       //              /* 权值 = 100+1+1+1=103 */
+       //              color:#FF0;/*黄色*/
+       //         }
+       //     </style>
+       //   </head>
+       //   <body>
+       //      <div id="redP">
+       //         <p class="red">red
+       //            <span><em>em red</em></span>
+       //         </p>
+       //         <p>red</p>
+       //      </div>
+       //   </body>
+       // </html>
+       // 结果：<em> 标签内的数据显示为蓝色。
+       // CSS 优先级法则：
+
+       // A  选择器都有一个权值，权值越大越优先；
+
+       // B  当权值相等时，后出现的样式表设置要优于先出现的样式表设置；
+
+       // C  创作者的规则高于浏览者：即网页编写者设置的CSS 样式的优先权高于浏览器所设置的样式；
+
+       // D  继承的CSS 样式不如后来指定的CSS 样式；
+
+       // E  在同一组属性设置中标有“!important”规则的优先级最大
+       // 
+       // 
+       // 1、什么是HTML语义化？
+
+       // <基本上都是围绕着几个主要的标签，像标题（H1~H6）、列表（li）、强调（strong em）等等>
+
+       // 　　根据内容的结构化（内容语义化），选择合适的标签（代码语义化）便于开发者阅读和写出更优雅的代码的同时让浏览器的爬虫和机器很好地解析。
+	</script>
+</head>
+<body>
+	<style type="text/css">
+  .div1{ width: 100px; height: 100px; border: 1px solid #000000; vertical-align:middle;display:table-cell;} 
+  .div2{ width:40px ; margin:0 auto; border:1px solid green;}
+  </style>
+
+  <div id="div1" class="div1">
+    <div id="div2" class="div2">
+      这是一段文字
+    </div>
+  </div>
+</body>
+</html>

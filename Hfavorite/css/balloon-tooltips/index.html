@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css 提示插件</title>
+	<link rel="stylesheet" type="text/css" href="balloon.min.css"/>
+	<style type="text/css">
+      body,html{margin:15px;}
+      button{
+      	margin: auto;
+      	display: block;
+      	min-width: 160px;
+      	text-align: center;
+      	color: #fff;
+      	background: #ff3d2e;
+      	padding: 1rem 2rem;
+      	font-size: 1.2rem;
+      	margin-top: 1.2rem;
+      	border: none;
+      	border-radius: 5px;
+      	transition: background 0.1s linear;
+      }
+	</style>
+</head>
+<body>
+	<button data-balloon="Whats up!" data-balloon-pos="up">Hover me!</button>
+
+	<button data-balloon="Whats up!" data-balloon-pos="left">Hover me!</button>
+
+	<button data-balloon="Whats up!" data-balloon-pos="right">Hover me!</button>
+
+	<button data-balloon="Whats up!" data-balloon-pos="down">Hover me!</button>
+
+    <!--
+       data-balloon-length four values: small, medium, large or fit.
+
+     -->
+	<button data-balloon-length="medium" data-balloon="Now that's a super big text we have over here right? Lorem ipsum dolor sit I'm done." data-balloon-pos="up">I'm a medium tooltip.</button>
+
+
+	<button data-balloon-visible data-balloon="I am always visible!" data-balloon-pos="up">Always visible!</button>
+
+	<button class="font-awesome" data-balloon="Font Awesome: &#xf030; &#xf133; &#xf1fc; &#xf03e; &#xf1f8;" data-balloon-pos="up">Hover me!</button>
+
+    <button data-balloon="Emojis: 😀 😬 😁 😂 😃 😄 😅 😆" data-balloon-pos="up">Hover me!</button>
+
+
+
+</body>
+</html>

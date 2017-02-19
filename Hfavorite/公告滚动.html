@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>公告滚动，纯js实现</title>
+	<style>
+	a{display:block;font-size:15px;line-height:18px;text-decoration:none;color:#333}
+	.shell{
+		background:url(http://www.codefans.net/jscss/demoimg/200902/arrowb.gif) no-repeat 4px 5px;
+		border:1px solid #aaa; 
+		width:386px;
+		padding:3px 2px 2px 25px; 
+	}
+	.core{
+		height:18px;
+		overflow:hidden;
+	}
+	</style>	
+</head>
+<body>
+	<div class="shell">
+		<div id="div1" class="core">
+		  <a href="javascript:">jQuery 无刷新切换CSS样式表改变风格</a>
+		  <a href="javascript:">VC++生成随机数并快速排序的算法</a>
+		  <a href="javascript:">基于jQuery的图片滚动切换插件</a>
+		  <a href="javascript:">联想头部大横幅Flash广告附源文件</a>
+		  <a href="javascript:">VB开发的Eclipse编程软件完整版</a>
+		</div> 
+	</div>
+	<p></p>
+	<div class="shell">
+		<div id="div2" class="core">
+		  <a href="javascript:">jQuery 无刷新切换CSS样式表改变风格</a>
+		  <a href="javascript:">VC++生成随机数并快速排序的算法</a>
+		  <a href="javascript:">基于jQuery的图片滚动切换插件</a>
+		  <a href="javascript:">联想头部大横幅Flash广告附源文件</a>
+		  <a href="javascript:">VB开发的Eclipse编程软件完整版</a>
+		</div> 
+	</div>
+	<p></p>
+	<div class="shell">
+		<div id="div3" class="core">
+		  <a href="javascript:">jQuery 无刷新切换CSS样式表改变风格</a>
+		  <a href="javascript:">VC++生成随机数并快速排序的算法</a>
+		  <a href="javascript:">基于jQuery的图片滚动切换插件</a>
+		  <a href="javascript:">联想头部大横幅Flash广告附源文件</a>
+		  <a href="javascript:">VB开发的Eclipse编程软件完整版</a>
+		</div> 
+	</div>
+	<p></p>
+	<div class="shell">
+		<div id="div4" class="core">
+		  <a href="javascript:">jQuery 无刷新切换CSS样式表改变风格</a>
+		  <a href="javascript:">VC++生成随机数并快速排序的算法</a>
+		  <a href="javascript:">基于jQuery的图片滚动切换插件</a>
+		  <a href="javascript:">联想头部大横幅Flash广告附源文件</a>
+		  <a href="javascript:">VB开发的Eclipse编程软件完整版</a>
+		</div> 
+	</div>
+	<p></p>
+	<div class="shell">
+		<div id="div5" class="core">
+		  <a href="javascript:">jQuery 无刷新切换CSS样式表改变风格</a>
+		  <a href="javascript:">VC++生成随机数并快速排序的算法</a>
+		  <a href="javascript:">基于jQuery的图片滚动切换插件</a>
+		  <a href="javascript:">联想头部大横幅Flash广告附源文件</a>
+		  <a href="javascript:">VB开发的Eclipse编程软件完整版</a>
+		</div> 
+	</div>	
+	<script>
+	    /**
+	     * [myGod description]
+	     * @param  {[type]} id [description]
+	     * @param  {[type]} w  多长时间滚动一次
+	     * @param  {[type]} n  1 向上滚动 -1向下滚动
+	     * @return {[type]}    [description]
+	     */
+		function myGod(id,w,n){
+			var box=document.getElementById(id),can=true,w=w||1500,fq=fq||10,n=n==-1?-1:1;
+			box.innerHTML+=box.innerHTML;
+			box.onmouseover=function(){can=false};
+			box.onmouseout=function(){can=true};
+			var max=parseInt(box.scrollHeight/2);
+			new function (){
+				var stop=box.scrollTop%18==0&&!can;
+				if(!stop){
+					var set=n>0?[max,0]:[0,max];
+					box.scrollTop==set[0]?box.scrollTop=set[1]:box.scrollTop+=n;
+				};
+				setTimeout(arguments.callee,box.scrollTop%18?fq:w);
+			};
+		};
+		myGod('div1',10);
+		myGod('div2',10,-1);
+		myGod('div3',500,-1);
+		myGod('div4',500);
+		myGod('div5',1500,1);
+	</script>	
+</body>
+</html>

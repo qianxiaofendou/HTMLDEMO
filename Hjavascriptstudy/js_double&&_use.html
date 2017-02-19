@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 运算符 || && 妙用</title>
+</head>
+<body>
+<pre>	
+假设对成长速度显示规定如下： 
+　　成长速度为5显示1个箭头； 
+　　成长速度为10显示2个箭头； 
+　　成长速度为12显示3个箭头； 
+　　成长速度为15显示4个箭头； 
+　　其他都显示都显示0个箭头。 
+用代码怎么实现？ 
+//if else 实现
+var add_level = 0; 
+if(add_step == 5){ 
+  add_level = 1; 
+}else if(add_step == 10){ 
+  add_level = 2; 
+}else if(add_step == 12){ 
+  add_level = 3; 
+}else if(add_step == 15){ 
+  add_level = 4; 
+}else { 
+  add_level = 0; 
+}
+
+如果需求改成： 
+成长速度为>12显示4个箭头； 
+成长速度为>10显示3个箭头； 
+成长速度为>5显示2个箭头； 
+成长速度为>0显示1个箭头； 
+成长速度为<=0显示0个箭头
+
+//&& ||实现  第一个需求实现
+var add_level = (add_step==5 && 1) || (add_step==10 && 2) || (add_step==12 && 3) || (add_step==15 && 4) || 0; 
+第二个需求实现
+var add_level = (add_step>12 && 4) || (add_step>10 && 3) || (add_step>5 && 2) || (add_step>0 && 1) || 0; 
+<pre>
+</body>
+</html>

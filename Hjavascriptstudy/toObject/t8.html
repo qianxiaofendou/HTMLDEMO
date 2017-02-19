@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js  JS获取节点的兄弟，父级，子级元素</title>
+</head>
+<body>
+       <div id="ad">
+        <div>hi</div>
+        <div id="prd">
+              <div></div>
+              <div></div>
+        </div>
+        <div>hello</div>
+       </div>
+	<script type="text/javascript"  contenteditable="true" style="display:block;white-space:pre;">
+          function del_ff(elem){
+              var tmp = elem.childNodes;
+              for (var i =0; i < tmp.length ; i++) {
+                     if(tmp[i].nodeName == "#text" && /\s/.test(tmp[i].nodeValue)){
+                            elem.removeChild(tmp[i])
+                     }
+              }
+          }
+    
+          var s= document.getElementById("prd");
+
+          del_ff(s);    //清理空格
+
+
+          var chils= s.childNodes;  //得到s的全部子节点
+          console.log(chils)
+          console.log("子节点个数：",chils.length)
+          var par=s.parentNode;   //得到s的父节点
+          del_ff(par);
+
+          var ns=s.nextSibling;   //获得s的下一个兄弟节点
+          console.log("下一个兄弟节点是：",ns);
+
+          var ps=s.previousElementSibling;  //得到s的上一个兄弟节点
+          console.log("上一个兄弟节点是：",ps);
+
+          var fc=s.firstChild;   //获得s的第一个子节点
+          console.log("获取当前节点的第一个子节点：",fc);
+
+          var lc=s.lastChild;   
+       
+	</script>
+	
+</body>
+</html>

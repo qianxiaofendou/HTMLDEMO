@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js原型和原型链</title>
+</head>
+<body>
+	<script type="text/javascript"  contenteditable="true" style="display:block;white-space:pre;">
+       var person = function(name){
+       	  this.name = name;
+       }
+       person.prototype.getName = function(){
+       	  return this.name;
+       }
+
+       var zjh = new person("xiaoxi");
+       console.log("zjh.getName():"+zjh.getName());
+       console.log(zjh.__proto__ === person.prototype);
+       console.log(person.prototype.__proto__ === Object.prototype);
+       console.log(Object.prototype.__proto__);
+
+       //我们把这个有__proto__串起来的直到Object.prototype.__proto__为null的链叫做原型链,
+	</script>
+	
+</body>
+</html>

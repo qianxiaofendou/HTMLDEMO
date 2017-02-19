@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>将事件对象设计进类型</title>
+    <script type="text/javascript">
+	    function myEvent() {
+	        this.listeners = []; //监听者列表
+	    }
+	    //添加一个监听者
+	    myEvent.prototype.addListener = function(fn) {
+	        this.listeners.push(fn);
+	    };
+	    //除移一个监听者
+	    myEvent.prototype.removeListener = function(fn) {
+	        var index = this.listeners.indexOf(fn);
+	        this.listeners.splice(index, 0);
+	    };
+	    //清除所有监听者
+	    myEvent.prototype.clearListeners = function() {
+	        this.listeners = [];
+	    };
+	    //发出执行信号，并告之所有监听者
+	    myEvent.prototype.raise = function(e) {
+	        var l = this.listeners.length;
+	        for (var i = 0; i < l; i++) {
+	            this.listeners[i](e); //执行所有监听方法
+	        }
+	    };
+
+
+	    function worker(name) {
+	        this.name = name;
+	        this.boss = null;
+	        this.startWorkEvent = new myEvent(); //定义一个startWork事件
+	    }
+	    worker.prototype.startWork = function() {
+	        this.startWorkEvent.raise(this); //发起开始工作的事件，并通知外部自己的姓名
+	    };
+
+	    function boss(name) {
+	        this.name = name;
+	        this.workers = [];
+	        this.workerState = {}; //定义一个JS原始对象用于存放员工工作状态
+	    }
+	    //员工开始工作的监听者，对开始工作的员工进行状态记录
+	    boss.prototype.onWorkerStartWork = function(worker) {
+	        worker.boss.workerState[worker.name] = true;
+	    };
+	    boss.prototype.addWorker = function(worker) {
+	        this.workers.push(worker);
+	        worker.boss = this;
+	        worker.startWorkEvent.addListener(this.onWorkerStartWork);
+	    };
+	    //统计
+	    boss.prototype.summary = function() {
+	        for (var i = 0; i < this.workers.length; i++) {
+	            //循环所有员工
+	            var worker = this.workers[i];
+	            if (this.workerState[worker.name]) {
+	                document.write(worker.name + "正在工作<br/>");
+	            } else {
+	                document.write(worker.name + "不在工作<br/>");
+	            }
+	        }
+	    };
+	    var jim = new worker("jim");
+	    var tom = new worker("tom");
+
+	    var bob = new boss("bob");
+	    bob.addWorker(jim);
+	    bob.addWorker(tom);
+
+	    jim.startWork();
+	    bob.summary(); //jim正在工作  tom不在工作
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
