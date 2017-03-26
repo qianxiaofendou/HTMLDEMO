@@ -116,6 +116,24 @@
       }
       console.log(sum(2,3)); // Outputs 5
       console.log(sum(2)(3)); // Outputs 5
+      
+      //此方法在有些浏览器里面失效
+      function sum2(){
+        var args = Array.prototype.slice.call(arguments);
+
+        var fn = function(){
+          var arg_fn = Array.prototype.slice.call(arguments);
+          return sum2.apply(null,args.concat(arg_fn))
+        }
+
+        fn.valueOf = function(){
+          return args.reduce(function(a,b){
+            return a + b;
+          });
+        }
+
+        return fn;
+      }
 	</script>
 </body>
 </html>
