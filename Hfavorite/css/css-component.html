@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css style component</title>
+	<style>
+	.switch-button {
+	  position: relative;
+	  width: 60px;
+	  height: 25px;
+	  display: inline-block;
+	  border-radius: 30px;
+	  color: #fff;
+	  vertical-align: middle;
+	}
+
+	.switch-button:hover {
+	  cursor: pointer;
+	}
+
+	.switch-button:after {
+	  position: absolute;
+	  top: 1px;
+	  width: 21px;
+	  height: 21px;
+	  border-radius: 50%;
+	  box-shadow: 0 0 4px rgba(0, 0, 0, 0.175);
+	}
+
+	.switch-button:before {
+	  position: absolute;
+	  top: 2px;
+	  width: 21px;
+	  height: 21px;
+	  /*border-radius: 50%;*/
+	  /*box-shadow: 0 0 4px rgba(0,0,0,.175);*/
+	}
+
+	.switch-off {
+	  background-color: #eee;
+	  /*position: absolute;*/
+	  color: #fff;
+	  transition: all 0.3s;
+	  border: solid 1px #eee;
+	}
+
+	.switch-off:after {
+	  content: '';
+	  left: 1px;
+	  background-color: #fff;
+	}
+
+	.switch-off:before {
+	  content: 'OFF';
+	  right: 12px;
+	  color: #9b9b9b;
+	}
+
+	.switch-on {
+	  background-color: #3aca60;
+	  transition: all 0.3s;
+	  border: solid 1px #2cb250;
+	  /*-webkit-transform: translateX(60px);*/
+	}
+
+	.switch-on:after {
+	  content: '';
+	  right: 1px;
+	  background-color: #fff;
+	}
+
+	.switch-on:before {
+	  content: 'ON';
+	  left: 10px;
+	  color: #fff;
+	}
+
+	.switch-disabled:before {
+	  background-color: rgba(0, 0, 0, 0.175);
+	}
+	</style>
+</head>
+<body>
+	<br/>
+	<div>
+		<span id="switch-select" class="switch-button switch-off"></span>
+	</div>	
+
+	<script type="text/javascript">
+       (function(){
+          function getClass(obj,sClass){
+       		var aClass=obj.className.split(" ");
+       		for(var i=0;i<aClass.length;i++){
+       			if(aClass[i]==sClass){
+       				return true;
+       			}
+       		}
+       		return false;
+       	 }
+       	 function removeClass(obj,sClass){
+       	 	var aClass = obj.className.split(' ');
+       	 	if(!aClass[0])return;
+       	 	for(var i=0; i<aClass.length; i++){
+       	 		if(aClass[i]==sClass){
+       	 			aClass.splice(i,1);
+       	 			obj.className = aClass.join(' ');
+       	 			return;
+       	 		}
+       	 	}
+       	 }
+       	 function addClass(obj,sClass){
+       	 	var aClass=obj.className.split('');
+       	 	if(!aClass[0]){
+       	 		obj.className=sClass;
+       	 		return
+       	 	}
+       	 	
+       	 	for(var i=0;i<aClass.length;i++){
+       	 		if(aClass[i]==sClass){
+       	 			return;
+       	 		}
+       	 	}
+       	 	obj.className+=' '+sClass;
+       	 }
+       	 var wrap = document.getElementById('switch-select');
+       	 wrap.onclick = function(){       	 	
+	       	 if(getClass(wrap,'switch-off')){
+	             removeClass(wrap,'switch-off');
+	             addClass(wrap,'switch-on');
+	       	 }else{
+	       	 	 removeClass(wrap,'switch-on');
+	             addClass(wrap,'switch-off');
+	       	 }
+       	 }
+
+       })()
+	</script>
+</body>
+</html>

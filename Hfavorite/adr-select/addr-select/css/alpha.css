@@ -1,4 +1,7 @@
 @charset "utf-8";
+dl{margin-top: 0px;}
+dt{display: block;}
+#maincity2 .subchildselected{width: 36px;  height: 16px;  border-radius: 2px;  background-color: #2278dd;font-size: 12px;color:#fff;text-align: center;padding: 1px 5px;margin-left: 5px;}
 /* 遮罩层 */
 #maskLayer{margin-top: 20px;font-size:12px;}
 #alphadiv{/*position:absolute;*/background:#000;/*z-index: 2000*/}
