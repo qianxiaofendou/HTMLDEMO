@@ -36,3 +36,45 @@ function isMobile() {
           }(),
           language:(navigator.browserLanguage || navigator.language).toLowerCase()
       } ;
+
+//腾讯关于cookies的操作
+function setCookie(C, E) {
+  var A = setCookie.arguments;
+  var F = setCookie.arguments.length;
+  var B = (F > 2) ? A[2] : null;
+  if (B != null) {
+    var D = new Date();
+    D.setTime(D.getTime() + (B * 1000 * 3600 * 24))
+  }
+  document.cookie = C + "=" + escape(E) + ((B == null) ? "": ("; expires=" + D.toGMTString()))
+}
+function setCookieExpire(C, E) {
+  var A = setCookieExpire.arguments;
+  var F = setCookieExpire.arguments.length;
+  var B = (F > 2) ? A[2] : null;
+  if (B != null) {
+    var D = B
+  }
+  document.cookie = C + "=" + escape(E) + ((B == null) ? "": ("; expires=" + D.toGMTString()))
+}
+function deleteCookie(A) {
+  var B = new Date();
+  B.setTime(0);
+  setCookie(A, "", B)
+}
+function getCookie(A) {
+  var C = function(F) {
+    if (!F) {
+      return F
+    }
+    for (; F != unescape(F);) {
+      F = unescape(F)
+    }
+    for (var E = ["<", ">", "'", '"', "%3c", "%3e", "%27", "%22", "%253c", "%253e", "%2527", "%2522"], G = ["&#x3c;", "&#x3e;", "&#x27;", "&#x22;", "%26%23x3c%3B", "%26%23x3e%3B", "%26%23x27%3B", "%26%23x22%3B", "%2526%2523x3c%253B", "%2526%2523x3e%253B", "%2526%2523x27%253B", "%2526%2523x22%253B"], D = 0; D < E.length; D++) {
+      F = F.replace(new RegExp(E[D], "gi"), G[D])
+    }
+    return F
+  };
+  var B;
+  return C((B = document.cookie.match(RegExp("(^|;\\s*)" + A + "=([^;]*)(;|$)"))) ? unescape(B[2]) : "")
+}      

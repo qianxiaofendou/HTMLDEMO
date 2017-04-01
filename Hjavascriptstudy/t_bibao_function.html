@@ -24,7 +24,7 @@
 			    var pAry = document.getElementsByTagName("p");
 			    for( var i=0; i<pAry.length; i++ ) {
 			         pAry[i].onclick = (function(i) {
-			          	//加一层闭包，返回一个函数作为响应事件  仉佼-网达 使用的方式
+			          	//加一层闭包，返回一个函数作为响应事件  zhangjiao 使用的方式
 			          	return function(){			         		
 					          alert(i);
 			            }
@@ -34,7 +34,7 @@
 			
 			init();     	
    }
-//第二种方法 将变量 i 保存给在每个段落对象(p)上  大志-网达 使用的方式     
+//第二种方法 将变量 i 保存给在每个段落对象(p)上  dazhi 使用的方式     
 // for( var i=0; i<pAry.length; i++ ) {
 //      pAry[i].onclick = function() {
 //      	pAry[i].i=i;
