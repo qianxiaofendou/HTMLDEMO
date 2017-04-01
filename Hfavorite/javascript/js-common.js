@@ -192,6 +192,26 @@ function getDateDiff(d1, d2) {
     return result;
 }
 
+/**
+ * 检查数组元素是否有重复
+ * 有重复返回true
+ * @param arr 数组
+ * var cc = [1,2,5,6,7,8,0,9];
+ * alert(checkArrayItemsIsDuplicate(cc));
+ */
+function checkArrayItemsIsDuplicate(arr) {
+    var map = {}, i, size;
+
+    for (i = 0, size = arr.length; i < size; i++){
+        if (map[arr[i]]){
+            return true;
+        }
+        map[arr[i]] = true;
+    }
+
+    return false;
+}
+
 //设置cookie
 function setCookie(cname, cvalue, exdays) {
     var a = setCookie.arguments;
@@ -220,4 +240,19 @@ function getCookie(cname) {
 //清除cookie
 function clearCookie(name) {
     setCookie(name, "", -1);
+}
+
+
+/*
+ *兼容IE6的居中定位
+ */
+function setCenter(){
+    $("#login_alert").css("position","absolute");
+    var FrameMarginTop =  document.documentElement.scrollTop - document.getElementById("login_alert").offsetHeight/2 + "px";
+    var FrameMarginLeft = document.documentElement.scrollLeft  - document.getElementById("login_alert").offsetWidth/2 + "px";
+    $("#login_alert").css({"marginTop":FrameMarginTop,"marginLeft":FrameMarginLeft});
+}
+
+function trimStr(A) {
+    return A.replace(/^\s+|\s+$/g, "")
 }
