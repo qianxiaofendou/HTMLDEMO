@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工具类</title>
+	<script type="text/javascript" src="allen.js"></script>
+	<script type="text/javascript">
+       console.log(allen);
+       console.log(allen.web.getUrlParam("name"));
+	</script>
+</head>
+<body>
+	<div id="div1">mouseout</div>
+	username: <input type="text" id="userName"/><br/>
+	<script type="text/javascript">
+       var div1 = document.getElementById("div1");
+       allen.web.bindEvent(div1,'mouseout',function(event){
+       	 event = allen.web.getEvent(event);
+       	 var target = allen.web.getTarget(event);
+       	 var relatedTarget = allen.web.getRelatedTarget(event);
+       	// console.log(target);
+       	 console.log("Moused out of " + target.tagName + " to " + relatedTarget.tagName);
+       });
+        var uname = document.getElementById("userName");
+       allen.web.bindEvent(uname,"keypress",function(event){
+       	 event = allen.web.getEvent(event);
+       	 console.log(allen.web.getCharCode(event));
+       });
+       (function(){
+            console.log(allen);
+       })()
+	</script>
+</body>
+</html>
