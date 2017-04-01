@@ -5,7 +5,7 @@
 
 * adr-select 地区选择插件，完善中
 * css        css的一些相关收集
-*javascript  js的一些整理
+* javascript  js的一些整理
 
 
 ### Hjavascriptstudy
