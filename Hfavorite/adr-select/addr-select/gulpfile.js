@@ -4,18 +4,27 @@ var gulp = require('gulp'),
     $ = gulpLoadPlugins();
 
 var config = {
-	dist:'./dist/scripts'
+	dist:'./dist',
+	js:'./dist/scripts',
+	css:'./dist/css'
 }
-	gulp.task('cityes6', ['clean-js'],function() {
+	gulp.task('cityes6',function() {
 		gulp.src([
 		"./js/city_arr.js",
 		"./js/city_func.js"
 		])
-		.pipe($.concat('common.js'))          //合并后的文件名
+		.pipe($.concat('city.js'))          //合并后的文件名
 		.pipe($.jshint())                     //js语法检查
 		.pipe($.babel({presets:['es2015']}))  //由于js里面使用了es6的语法，需要转换为es5
 		.pipe($.uglify())                     //压缩js代码
-		.pipe(gulp.dest(config.dist))
+		.pipe(gulp.dest(config.js))
+	});
+
+	gulp.task('css',function(){
+		gulp.src('./css/alpha.css')
+		    .pipe($.rename('city.css'))
+		    .pipe($.minifyCss())
+		    .pipe(gulp.dest(config.css))
 	});
 
     //创建监听  控制台执行命令gulp watch 即可
@@ -25,6 +34,11 @@ var config = {
 
     //清楚目录下的文件
 	gulp.task('clean-js',function(){
+		return gulp.src(config.js,{read:false})
+		           .pipe($.clean())
+	});
+
+	gulp.task('clean-dir',function(){
 		return gulp.src(config.dist,{read:false})
 		           .pipe($.clean())
 	});
@@ -35,10 +49,10 @@ var config = {
     * 2、cityes6 该任务依赖 clean-js 任务
     * 3、执行顺序 clean-js>cityes6
     */
-   gulp.task('default',['cityes6']);
+   // gulp.task('default',['cityes6']);
 
    //优化写法
    //注意这种写法，在你的任务依赖里面就不需要依赖clean-js任务了
-   // gulp.task('default',['clean-js'],function(){
-   // 	gulp.start('cityes6','你的其他任务');
-   // });
+   gulp.task('default',['clean-dir'],function(){
+   	gulp.start('cityes6','css');
+   });
