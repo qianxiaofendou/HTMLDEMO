@@ -103,7 +103,7 @@ var residency_hukou_flag=0;	// 居住地 / 户口所在地   开关
 var jobArea_Arr = new Array();
 //var jobArea_Arr = new Array('0100','0200','2402');
 
-var jobArea = {
+window.jobArea = {
 	// 请选择地区
 	init : function(){
 		var _str='',_id='';
@@ -156,7 +156,7 @@ var jobArea = {
 					output+='<dl style="display:none;"><dd>';					
 				}
 				for (var j in arr[i][1] ){
-					id=arr[i][1][j];
+					let id=arr[i][1][j];
 					let isSelect = '';
 					if(jobArea_Arr && jobArea_Arr.length > 0){
 						if(jobArea_Arr.includes(id)) isSelect = ' chkON';
@@ -322,7 +322,7 @@ var jobArea = {
 		}
 	},
 	del : function(id){	
-		var _this = this;
+		var _this = this,isSub;
 		var $maincity2 = $("#maincity2 .jobArea"+id).parent().parent().parent().parent().parent();
 		if(id.substr(6)=='000'){	// 选中父类
 			isSub = false;
@@ -383,3 +383,5 @@ function jobAreaSelect(data){
 	//boxAlpha();
 	//draglayer();
 }
+
+window.jobAreaSelect = jobAreaSelect;
