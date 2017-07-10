@@ -1,0 +1,1057 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>jQuery Bootstrap Treeselect Plugin Demo</title>
+        
+        <link href="https://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet" >
+        <link href="css/jquery.bootstrap.treeselect.css" rel="stylesheet">
+        <script src="https://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js" ></script>
+        <script src="js/jquery.bootstrap.treeselect.js"></script>
+        <script>
+            
+            $(function(){
+                $('#productGroup').treeselect();
+            });
+            
+        </script>
+        <style>
+        body { background-color:#fafafa;}
+        .container { margin:150px auto;}
+        .tree-diy-span{
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .bts_dropdown {padding:0px;}
+
+        
+        .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*=col-] {
+            float: none;
+            display: inline-block;
+            margin-left: 0;
+        }
+        .bootstrap-select.form-control:not([class*=col-]) {
+            width: 100%;
+        }
+        .bootstrap-select>.dropdown-toggle {
+            width: 100%;
+            padding-right: 25px;
+            z-index: 1;
+        }
+        .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+            display: inline-block;
+            overflow: hidden;
+            width: 100%;
+            text-align: left;
+        }
+        .pull-left {
+            float: left!important;
+        }
+        .bootstrap-select.btn-group .dropdown-toggle .caret {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            margin-top: -2px;
+            vertical-align: middle;
+        }
+        .bootstrap-select.btn-group .dropdown-menu {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .bootstrap-select.btn-group .dropdown-menu li {
+            position: relative;
+        }
+        .bts_dropdown .tree-diy-span {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <h1>jQuery Bootstrap Treeselect Plugin Demo</h1>
+        <select multiple="multiple" id="productGroup" name="productGroupen">
+            <option value="1" selected="selected">Group 1</option>
+            <option value="2" data-parent="1" selected>Group 2</option>
+            <option value="3" data-parent="2">Group 3</option>
+            <option value="4" selected>Group 4</option>
+            <option value="5">Group 5</option>
+        </select>
+        <br/>
+        <br/>
+        <select multiple="multiple" id="demo01" name="demo001">
+            
+        </select>
+    </div>
+    </body>
+    <script type="text/javascript">
+let dd = {
+    "data": [
+        {
+            "tagCode": "2001",
+            "children": [
+                {
+                    "tagCode": "2001001",
+                    "children": [],
+                    "tagNum": 2001001,
+                    "id": 3352,
+                    "tagName": "摄影",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001002",
+                    "children": [],
+                    "tagNum": 2001002,
+                    "id": 3351,
+                    "tagName": "健康",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001003",
+                    "children": [],
+                    "tagNum": 2001003,
+                    "id": 3350,
+                    "tagName": "心理",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001004",
+                    "children": [],
+                    "tagNum": 2001004,
+                    "id": 3349,
+                    "tagName": "旅游",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001005",
+                    "children": [],
+                    "tagNum": 2001005,
+                    "id": 3353,
+                    "tagName": "其他",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001006",
+                    "children": [],
+                    "tagNum": 2001006,
+                    "id": 3348,
+                    "tagName": "文学",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001007",
+                    "children": [],
+                    "tagNum": 2001007,
+                    "id": 3344,
+                    "tagName": "美术",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001008",
+                    "children": [],
+                    "tagNum": 2001008,
+                    "id": 3347,
+                    "tagName": "影视",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001009",
+                    "children": [],
+                    "tagNum": 2001009,
+                    "id": 3346,
+                    "tagName": "生活",
+                    "isTag": 1,
+                    "parentId": 3343
+                },
+                {
+                    "tagCode": "2001010",
+                    "children": [],
+                    "tagNum": 2001010,
+                    "id": 3345,
+                    "tagName": "音乐",
+                    "isTag": 1,
+                    "parentId": 3343
+                }
+            ],
+            "tagNum": 2001,
+            "id": 3343,
+            "tagName": "兴趣爱好",
+            "isTag": 1,
+            "parentId": 10
+        },
+        {
+            "tagCode": "2002",
+            "children": [
+                {
+                    "tagCode": "2002001",
+                    "children": [],
+                    "tagNum": 2002001,
+                    "id": 3341,
+                    "tagName": "职场技能",
+                    "isTag": 1,
+                    "parentId": 3339
+                },
+                {
+                    "tagCode": "2002002",
+                    "children": [],
+                    "tagNum": 2002002,
+                    "id": 3340,
+                    "tagName": "职业素养",
+                    "isTag": 1,
+                    "parentId": 3339
+                },
+                {
+                    "tagCode": "2002003",
+                    "children": [],
+                    "tagNum": 2002003,
+                    "id": 3342,
+                    "tagName": "资格考试",
+                    "isTag": 1,
+                    "parentId": 3339
+                }
+            ],
+            "tagNum": 2002,
+            "id": 3339,
+            "tagName": "职场学习",
+            "isTag": 1,
+            "parentId": 10
+        },
+        {
+            "tagCode": "2003",
+            "children": [
+                {
+                    "tagCode": "2003001",
+                    "children": [
+                        {
+                            "tagCode": "2003001001",
+                            "children": [],
+                            "tagNum": 2003001001,
+                            "id": 3338,
+                            "tagName": "投资理财",
+                            "isTag": 1,
+                            "parentId": 3334
+                        },
+                        {
+                            "tagCode": "2003001002",
+                            "children": [],
+                            "tagNum": 2003001002,
+                            "id": 3335,
+                            "tagName": "金融考试",
+                            "isTag": 1,
+                            "parentId": 3334
+                        }
+                    ],
+                    "tagNum": 2003001,
+                    "id": 3334,
+                    "tagName": "金融",
+                    "isTag": 1,
+                    "parentId": 3328
+                },
+                {
+                    "tagCode": "2003002",
+                    "children": [
+                        {
+                            "tagCode": "2003002001",
+                            "children": [],
+                            "tagNum": 2003002001,
+                            "id": 3330,
+                            "tagName": "财会考试",
+                            "isTag": 1,
+                            "parentId": 3329
+                        },
+                        {
+                            "tagCode": "2003002002",
+                            "children": [],
+                            "tagNum": 2003002002,
+                            "id": 3333,
+                            "tagName": "财会实务",
+                            "isTag": 1,
+                            "parentId": 3329
+                        }
+                    ],
+                    "tagNum": 2003002,
+                    "id": 3329,
+                    "tagName": "财会",
+                    "isTag": 1,
+                    "parentId": 3328
+                }
+            ],
+            "tagNum": 2003,
+            "id": 3328,
+            "tagName": "财会金融",
+            "isTag": 1,
+            "parentId": 10
+        },
+        {
+            "tagCode": "2004",
+            "children": [
+                {
+                    "tagCode": "2004001",
+                    "children": [
+                        {
+                            "tagCode": "2004001001",
+                            "children": [],
+                            "tagNum": 2004001001,
+                            "id": 3327,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3309
+                        },
+                        {
+                            "tagCode": "2004001002",
+                            "children": [],
+                            "tagNum": 2004001002,
+                            "id": 3310,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3309
+                        },
+                        {
+                            "tagCode": "2004001003",
+                            "children": [],
+                            "tagNum": 2004001003,
+                            "id": 3318,
+                            "tagName": "留学考试",
+                            "isTag": 1,
+                            "parentId": 3309
+                        }
+                    ],
+                    "tagNum": 2004001,
+                    "id": 3309,
+                    "tagName": "英语留学",
+                    "isTag": 1,
+                    "parentId": 3308
+                }
+            ],
+            "tagNum": 2004,
+            "id": 3308,
+            "tagName": "出国留学",
+            "isTag": 1,
+            "parentId": 10
+        },
+        {
+            "tagCode": "2005",
+            "children": [
+                {
+                    "tagCode": "2005001",
+                    "children": [
+                        {
+                            "tagCode": "2005001001",
+                            "children": [],
+                            "tagNum": 2005001001,
+                            "id": 3305,
+                            "tagName": "199管理类联考",
+                            "isTag": 1,
+                            "parentId": 3298
+                        },
+                        {
+                            "tagCode": "2005001002",
+                            "children": [],
+                            "tagNum": 2005001002,
+                            "id": 3304,
+                            "tagName": "考研专业课",
+                            "isTag": 1,
+                            "parentId": 3298
+                        },
+                        {
+                            "tagCode": "2005001003",
+                            "children": [],
+                            "tagNum": 2005001003,
+                            "id": 3303,
+                            "tagName": "考研二外",
+                            "isTag": 1,
+                            "parentId": 3298
+                        },
+                        {
+                            "tagCode": "2005001004",
+                            "children": [],
+                            "tagNum": 2005001004,
+                            "id": 3302,
+                            "tagName": "考研数学",
+                            "isTag": 1,
+                            "parentId": 3298
+                        },
+                        {
+                            "tagCode": "2005001005",
+                            "children": [],
+                            "tagNum": 2005001005,
+                            "id": 3301,
+                            "tagName": "考研政治",
+                            "isTag": 1,
+                            "parentId": 3298
+                        },
+                        {
+                            "tagCode": "2005001006",
+                            "children": [],
+                            "tagNum": 2005001006,
+                            "id": 3306,
+                            "tagName": "396经济类联考",
+                            "isTag": 1,
+                            "parentId": 3298
+                        },
+                        {
+                            "tagCode": "2005001007",
+                            "children": [],
+                            "tagNum": 2005001007,
+                            "id": 3300,
+                            "tagName": "考研英语",
+                            "isTag": 1,
+                            "parentId": 3298
+                        },
+                        {
+                            "tagCode": "2005001008",
+                            "children": [],
+                            "tagNum": 2005001008,
+                            "id": 3299,
+                            "tagName": "考研联报",
+                            "isTag": 1,
+                            "parentId": 3298
+                        }
+                    ],
+                    "tagNum": 2005001,
+                    "id": 3298,
+                    "tagName": "考研初试",
+                    "isTag": 1,
+                    "parentId": 3297
+                },
+                {
+                    "tagCode": "2005002",
+                    "children": [],
+                    "tagNum": 2005002,
+                    "id": 3307,
+                    "tagName": "考研复试",
+                    "isTag": 1,
+                    "parentId": 3297
+                }
+            ],
+            "tagNum": 2005,
+            "id": 3297,
+            "tagName": "考研",
+            "isTag": 1,
+            "parentId": 10
+        },
+        {
+            "tagCode": "2006",
+            "children": [
+                {
+                    "tagCode": "2006001",
+                    "children": [],
+                    "tagNum": 2006001,
+                    "id": 3293,
+                    "tagName": "学前",
+                    "isTag": 1,
+                    "parentId": 3292
+                },
+                {
+                    "tagCode": "2006002",
+                    "children": [],
+                    "tagNum": 2006002,
+                    "id": 3294,
+                    "tagName": "小学",
+                    "isTag": 1,
+                    "parentId": 3292
+                },
+                {
+                    "tagCode": "2006003",
+                    "children": [],
+                    "tagNum": 2006003,
+                    "id": 3296,
+                    "tagName": "高中",
+                    "isTag": 1,
+                    "parentId": 3292
+                },
+                {
+                    "tagCode": "2006004",
+                    "children": [],
+                    "tagNum": 2006004,
+                    "id": 3295,
+                    "tagName": "初中",
+                    "isTag": 1,
+                    "parentId": 3292
+                }
+            ],
+            "tagNum": 2006,
+            "id": 3292,
+            "tagName": "中小幼学习",
+            "isTag": 1,
+            "parentId": 10
+        },
+        {
+            "tagCode": "2007",
+            "children": [
+                {
+                    "tagCode": "2007001",
+                    "children": [
+                        {
+                            "tagCode": "2007001001",
+                            "children": [],
+                            "tagNum": 2007001001,
+                            "id": 3229,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3214
+                        },
+                        {
+                            "tagCode": "2007001002",
+                            "children": [],
+                            "tagNum": 2007001002,
+                            "id": 3224,
+                            "tagName": "意语考试",
+                            "isTag": 1,
+                            "parentId": 3214
+                        },
+                        {
+                            "tagCode": "2007001003",
+                            "children": [],
+                            "tagNum": 2007001003,
+                            "id": 3215,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3214
+                        }
+                    ],
+                    "tagNum": 2007001,
+                    "id": 3214,
+                    "tagName": "意大利语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007002",
+                    "children": [
+                        {
+                            "tagCode": "2007002001",
+                            "children": [],
+                            "tagNum": 2007002001,
+                            "id": 3203,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3187
+                        },
+                        {
+                            "tagCode": "2007002002",
+                            "children": [],
+                            "tagNum": 2007002002,
+                            "id": 3197,
+                            "tagName": "俄语考试",
+                            "isTag": 1,
+                            "parentId": 3187
+                        },
+                        {
+                            "tagCode": "2007002003",
+                            "children": [],
+                            "tagNum": 2007002003,
+                            "id": 3188,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3187
+                        }
+                    ],
+                    "tagNum": 2007002,
+                    "id": 3187,
+                    "tagName": "俄语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007003",
+                    "children": [
+                        {
+                            "tagCode": "2007003001",
+                            "children": [],
+                            "tagNum": 2007003001,
+                            "id": 3181,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3167
+                        },
+                        {
+                            "tagCode": "2007003002",
+                            "children": [],
+                            "tagNum": 2007003002,
+                            "id": 3177,
+                            "tagName": "外汉考试",
+                            "isTag": 1,
+                            "parentId": 3167
+                        },
+                        {
+                            "tagCode": "2007003003",
+                            "children": [],
+                            "tagNum": 2007003003,
+                            "id": 3168,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3167
+                        }
+                    ],
+                    "tagNum": 2007003,
+                    "id": 3167,
+                    "tagName": "对外汉语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007004",
+                    "children": [
+                        {
+                            "tagCode": "2007004001",
+                            "children": [],
+                            "tagNum": 2007004001,
+                            "id": 3158,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3146
+                        },
+                        {
+                            "tagCode": "2007004002",
+                            "children": [],
+                            "tagNum": 2007004002,
+                            "id": 3156,
+                            "tagName": "泰语考试",
+                            "isTag": 1,
+                            "parentId": 3146
+                        },
+                        {
+                            "tagCode": "2007004003",
+                            "children": [],
+                            "tagNum": 2007004003,
+                            "id": 3147,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3146
+                        }
+                    ],
+                    "tagNum": 2007004,
+                    "id": 3146,
+                    "tagName": "泰语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007005",
+                    "children": [
+                        {
+                            "tagCode": "2007005001",
+                            "children": [],
+                            "tagNum": 2007005001,
+                            "id": 3138,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3124
+                        },
+                        {
+                            "tagCode": "2007005002",
+                            "children": [],
+                            "tagNum": 2007005002,
+                            "id": 3125,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3124
+                        },
+                        {
+                            "tagCode": "2007005003",
+                            "children": [],
+                            "tagNum": 2007005003,
+                            "id": 3134,
+                            "tagName": "西语考试",
+                            "isTag": 1,
+                            "parentId": 3124
+                        }
+                    ],
+                    "tagNum": 2007005,
+                    "id": 3124,
+                    "tagName": "西班牙语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007006",
+                    "children": [
+                        {
+                            "tagCode": "2007006001",
+                            "children": [],
+                            "tagNum": 2007006001,
+                            "id": 3251,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3239
+                        },
+                        {
+                            "tagCode": "2007006002",
+                            "children": [],
+                            "tagNum": 2007006002,
+                            "id": 3240,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3239
+                        },
+                        {
+                            "tagCode": "2007006003",
+                            "children": [],
+                            "tagNum": 2007006003,
+                            "id": 3249,
+                            "tagName": "葡语考试",
+                            "isTag": 1,
+                            "parentId": 3239
+                        }
+                    ],
+                    "tagNum": 2007006,
+                    "id": 3239,
+                    "tagName": "葡萄牙语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007007",
+                    "children": [],
+                    "tagNum": 2007007,
+                    "id": 3291,
+                    "tagName": "方言",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007008",
+                    "children": [],
+                    "tagNum": 2007008,
+                    "id": 3290,
+                    "tagName": "梵语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007009",
+                    "children": [],
+                    "tagNum": 2007009,
+                    "id": 3289,
+                    "tagName": "越南语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007010",
+                    "children": [],
+                    "tagNum": 2007010,
+                    "id": 3288,
+                    "tagName": "世界语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007011",
+                    "children": [],
+                    "tagNum": 2007011,
+                    "id": 3287,
+                    "tagName": "拉丁语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007012",
+                    "children": [],
+                    "tagNum": 2007012,
+                    "id": 3286,
+                    "tagName": "丹麦语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007013",
+                    "children": [],
+                    "tagNum": 2007013,
+                    "id": 3285,
+                    "tagName": "瑞典语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007014",
+                    "children": [],
+                    "tagNum": 2007014,
+                    "id": 3284,
+                    "tagName": "荷兰语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007015",
+                    "children": [
+                        {
+                            "tagCode": "2007015001",
+                            "children": [],
+                            "tagNum": 2007015001,
+                            "id": 3274,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3261
+                        },
+                        {
+                            "tagCode": "2007015002",
+                            "children": [],
+                            "tagNum": 2007015002,
+                            "id": 3262,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3261
+                        },
+                        {
+                            "tagCode": "2007015003",
+                            "children": [],
+                            "tagNum": 2007015003,
+                            "id": 3271,
+                            "tagName": "阿拉伯语考试",
+                            "isTag": 1,
+                            "parentId": 3261
+                        }
+                    ],
+                    "tagNum": 2007015,
+                    "id": 3261,
+                    "tagName": "阿拉伯语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007016",
+                    "children": [
+                        {
+                            "tagCode": "2007016001",
+                            "children": [],
+                            "tagNum": 2007016001,
+                            "id": 3116,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3100
+                        },
+                        {
+                            "tagCode": "2007016002",
+                            "children": [],
+                            "tagNum": 2007016002,
+                            "id": 3101,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3100
+                        },
+                        {
+                            "tagCode": "2007016003",
+                            "children": [],
+                            "tagNum": 2007016003,
+                            "id": 3110,
+                            "tagName": "德语考试",
+                            "isTag": 1,
+                            "parentId": 3100
+                        }
+                    ],
+                    "tagNum": 2007016,
+                    "id": 3100,
+                    "tagName": "德语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007017",
+                    "children": [
+                        {
+                            "tagCode": "2007017001",
+                            "children": [],
+                            "tagNum": 2007017001,
+                            "id": 3012,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 2992
+                        },
+                        {
+                            "tagCode": "2007017002",
+                            "children": [],
+                            "tagNum": 2007017002,
+                            "id": 2993,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 2992
+                        },
+                        {
+                            "tagCode": "2007017003",
+                            "children": [],
+                            "tagNum": 2007017003,
+                            "id": 3002,
+                            "tagName": "英语考试",
+                            "isTag": 1,
+                            "parentId": 2992
+                        }
+                    ],
+                    "tagNum": 2007017,
+                    "id": 2992,
+                    "tagName": "英语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007018",
+                    "children": [
+                        {
+                            "tagCode": "2007018001",
+                            "children": [],
+                            "tagNum": 2007018001,
+                            "id": 3031,
+                            "tagName": "日语考试",
+                            "isTag": 1,
+                            "parentId": 3021
+                        },
+                        {
+                            "tagCode": "2007018002",
+                            "children": [],
+                            "tagNum": 2007018002,
+                            "id": 3036,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3021
+                        },
+                        {
+                            "tagCode": "2007018003",
+                            "children": [],
+                            "tagNum": 2007018003,
+                            "id": 3022,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3021
+                        }
+                    ],
+                    "tagNum": 2007018,
+                    "id": 3021,
+                    "tagName": "日语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007019",
+                    "children": [
+                        {
+                            "tagCode": "2007019001",
+                            "children": [],
+                            "tagNum": 2007019001,
+                            "id": 3086,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3070
+                        },
+                        {
+                            "tagCode": "2007019002",
+                            "children": [],
+                            "tagNum": 2007019002,
+                            "id": 3071,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3070
+                        },
+                        {
+                            "tagCode": "2007019003",
+                            "children": [],
+                            "tagNum": 2007019003,
+                            "id": 3080,
+                            "tagName": "法语考试",
+                            "isTag": 1,
+                            "parentId": 3070
+                        }
+                    ],
+                    "tagNum": 2007019,
+                    "id": 3070,
+                    "tagName": "法语",
+                    "isTag": 1,
+                    "parentId": 2991
+                },
+                {
+                    "tagCode": "2007020",
+                    "children": [
+                        {
+                            "tagCode": "2007020001",
+                            "children": [],
+                            "tagNum": 2007020001,
+                            "id": 3058,
+                            "tagName": "韩语考试",
+                            "isTag": 1,
+                            "parentId": 3048
+                        },
+                        {
+                            "tagCode": "2007020002",
+                            "children": [],
+                            "tagNum": 2007020002,
+                            "id": 3060,
+                            "tagName": "兴趣/实用",
+                            "isTag": 1,
+                            "parentId": 3048
+                        },
+                        {
+                            "tagCode": "2007020003",
+                            "children": [],
+                            "tagNum": 2007020003,
+                            "id": 3049,
+                            "tagName": "语言能力",
+                            "isTag": 1,
+                            "parentId": 3048
+                        }
+                    ],
+                    "tagNum": 2007020,
+                    "id": 3048,
+                    "tagName": "韩语",
+                    "isTag": 1,
+                    "parentId": 2991
+                }
+            ],
+            "tagNum": 2007,
+            "id": 2991,
+            "tagName": "语言学习",
+            "isTag": 1,
+            "parentId": 10
+        }
+    ],
+    "message": "success",
+    "status": 0,
+    "time": null
+}
+
+let strArr = []
+let serverData = ''
+function test_demo(data,isPrt){
+   // let data = ddd.data
+   
+   data.map(v => {
+     if(v.parentId === 10){
+       strArr.push(`<option ${(serverData&&serverData!='') ? (serverData.indexOf(v.id)!=-1 ? 'selected' :'') : ''}  data-prt='1' data-tid='${v.id}' value='${v.id}'>${v.tagName}</option>`)
+     }else{
+         let _tmp = `<option ${(serverData&&serverData!='') ? (serverData.indexOf(v.id)!=-1 ? 'selected' :'') : ''}  data-tid='${v.id}'  value='${v.id}' data-parent='${v.parentId}'>${v.tagName}</option>`
+         if(v.children && v.children.length){
+             _tmp = `<option ${(serverData&&serverData!='') ? (serverData.indexOf(v.id)!=-1 ? 'selected' :'') : ''}  data-prt='1'  data-tid='${v.id}'  value='${v.id}' data-parent='${v.parentId}'>${v.tagName}</option>`
+         }
+       strArr.push(_tmp)
+     }
+      if(v.children && v.children.length){
+         test_demo(v.children)
+      }
+    })
+
+}
+
+test_demo(dd.data)
+// console.log(strArr.join(''));
+$('#demo01').append(strArr.join('')).treeselect();
+
+
+
+</script>
+</html>

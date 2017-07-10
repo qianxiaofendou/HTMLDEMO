@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>generator study</title>
+</head>
+<body>
+      
+	<script type="text/javascript"  contenteditable="true" style="display:block;white-space:pre;">
+         function* gen (){
+          let first = yield 'first'
+          console.log(first)
+          let two = yield 'two'
+          console.log(two)
+          let three = yield 'three'
+          console.log(three)
+          return 'end'
+         }
+
+         let gen01 = gen()
+
+         //first、two、three的输出是每一次next传入的参数
+         console.log('指针第一次移动：' + JSON.stringify(gen01.next(111)))
+         console.log('指针第二次移动：' + JSON.stringify(gen01.next(222)))
+         console.log('指针第三次移动：' + JSON.stringify(gen01.next(333)))
+         console.log('指针第四次移动：' + JSON.stringify(gen01.next(444)))
+         console.log('指针第五次移动：' + JSON.stringify(gen01.next(555)))
+         console.log('指针第六次移动：' + JSON.stringify(gen01.next()))
+       
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>class study</title>
+</head>
+<body>
+      
+	<script type="text/javascript"  contenteditable="true" style="display:block;white-space:pre;">
+         class Person{
+            constructor(name,age){
+              this.name = name
+              this.age  = age
+            }
+
+            selfIntroduction(){
+               console.log('I am %s,I am %s ',this.name,this.age)
+            }
+
+         }
+         
+         console.log('typeof Person:',typeof Person)
+
+         console.log('Person === Person.prototype.constructor',Person === Person.prototype.constructor)
+
+         var jack = new Person('jack',18)
+         jack.selfIntroduction()
+
+
+         class Son extends Person {
+            constructor(name,age,sex){
+              super(name,age)
+              this.sex = sex
+            }
+
+            selfIntroduction(){
+               console.log('I am %s,I am %s ,I am %s',this.name,this.age,this.sex)
+            }
+         }
+       
+         var tom = new Son('tom',1,'man')
+         tom.selfIntroduction()
+	</script>
+	
+</body>
+</html>

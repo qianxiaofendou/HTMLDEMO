@@ -1,0 +1,36 @@
+.bts_dropdown {
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            border-top: 1px dashed #EEE;
+            padding-left: 20px;
+
+            label {
+                position: relative;
+                padding: 5px 20px;
+                white-space: nowrap;
+
+                input {
+                    position: absolute;
+                    left: 0px;
+                    top: 5px
+                }
+            }
+        }
+    }
+
+    > ul {
+        max-height: 289px;
+        overflow: auto;
+        
+        > li {
+            border-top: 1px solid #EEE;
+
+            &:first-child {
+                border-top: 0;
+            }
+        }
+    }
+}

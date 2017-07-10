@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>async-await study</title>
+</head>
+<body>
+      
+	<script type="text/javascript"  contenteditable="true" style="display:block;white-space:pre;">
+         const genAsync = (delay) => {
+           return new Promise((resolve, reject) => {
+             setTimeout(resolve.bind(null, `time: ${delay}s`), delay)
+           })
+         }
+
+          const genAsync2 = async (delay) => {
+            return await new Promise((resolve, reject) => {
+             setTimeout(resolve.bind(null, `time: ${delay}s`), delay)
+           })
+         }
+
+         const delay = 1000
+
+         async function gen (fn) {
+           let a = await fn(delay)
+           console.log(a)
+           let b = await fn(delay * 2)
+           console.log(b)
+           return 'end:' + b
+         }
+
+         // gen(genAsync).then(console.log)
+
+
+         // gen(genAsync2).then(console.log)
+
+         const sleep = (time) => new Promise((resolve)=>{
+               setTimeout(resolve,time);
+         });
+
+         (async ()=>{
+               for(var m = 0; m < 5; m++){
+                     await sleep(1000);
+                     console.log(new Date(),m);
+               }
+               
+               console.log('for循环结束…………………………')
+               await sleep(1000);
+               console.log(new Date(),m);
+         })();
+       
+	</script>
+	
+</body>
+</html>
